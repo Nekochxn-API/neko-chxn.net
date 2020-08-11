@@ -7,15 +7,16 @@ namespace NekoChxn
 {
     public class NekoChxnClient
     {
-        private const string baseUrl = "https://api.neko-chxn.xyz/v1/";
+        private const string BaseUrl = "https://api.neko-chxn.xyz/v1/";
         private readonly HttpClient Client = new HttpClient();
+
         private async Task<NekoChxnResponse> Fetch(string endpoint)
         {
             NekoChxnResponse apiRes = null;
             HttpResponseMessage res = null;
             try
             {
-                res = await Client.GetAsync(baseUrl + endpoint);
+                res = await Client.GetAsync(BaseUrl + endpoint);
                 res.EnsureSuccessStatusCode();
                 string rawJson = await res.Content.ReadAsStringAsync();
                 var json = JObject.Parse(rawJson);
@@ -69,13 +70,19 @@ namespace NekoChxn
 
     }
 
+    /// <summary>Represents a NekoChxn api response</summary>
     public class NekoChxnResponse
     {
+        /// <summary>The endpoint that was called</summary>
         public readonly string Endpoint;
+        /// <summary>The resulting image URL</summary>
         public readonly string Url;
+        /// <summary>Indicator whether the request was successful</summary>
         public readonly bool Ok;
         public readonly int StatusCode;
+        /// <summary>The error if there was any</summary>
         public readonly string ErrorMessage;
+
         public NekoChxnResponse(string endpoint, JObject json, bool success, int statusCode, string error = null)
         {
             Endpoint = endpoint;
