@@ -9,6 +9,8 @@ namespace NekoChxn
     {
         private const string BaseUrl = "https://api.neko-chxn.xyz/v1/";
         private readonly HttpClient Client = new HttpClient();
+        /// <summary>Emits debug info</summary> 
+        public Func<string, Task> Debug = null;
 
         private async Task<NekoChxnResponse> Fetch(string endpoint)
         {
@@ -21,10 +23,12 @@ namespace NekoChxn
                 string rawJson = await res.Content.ReadAsStringAsync();
                 var json = JObject.Parse(rawJson);
                 apiRes = new NekoChxnResponse(endpoint, json, res.IsSuccessStatusCode, (int)res.StatusCode);
+                if (Debug != null) _ = Debug($"[NekoChxn] Successfully fetched the {apiRes.Endpoint} endpoint");
             }
             catch (Exception e)
             {
                 apiRes = new NekoChxnResponse(endpoint, null, false, res == null ? 404 : (int)res.StatusCode, e.Message);
+                if (Debug != null) _ = Debug($"[NekoChxn] Failed fetching the {apiRes.Endpoint} endpoint: {(string.IsNullOrEmpty(apiRes.ErrorMessage) ? "No error" : apiRes.ErrorMessage)}");
             }
             return apiRes;
         }
