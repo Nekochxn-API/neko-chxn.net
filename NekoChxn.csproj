@@ -3,16 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>NekoChxn</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>VenNeptury</Authors>
     <Company>Neko-Chxn</Company>
-    <Description>A https://neko-chxn.xyz Wrapper</Description>
+    <Description>A lib for getting adorable anime gifs from https://neko-chxn.xyz</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Copyright>VenNeptury</Copyright>
+    <Copyright>Copyright © VenNeptury 2020</Copyright>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/neko-chxn/neko-chxn.net</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Resources\icon.png" Pack="true" PackagePath=""/>
+  </ItemGroup>
 </Project>
