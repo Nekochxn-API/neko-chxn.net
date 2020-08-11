@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+rm -rf bin/debug
+dotnet pack
+dotnet nuget push $(find . -name "*.nupkg") -k $(cat ~/Projects/NUGET.txt) -s https://api.nuget.org/v3/index.json
