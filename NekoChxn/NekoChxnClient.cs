@@ -38,7 +38,7 @@ namespace NekoChxn
         public Task<NekoChxnResponse> Cuddle() => Fetch("cuddle/img");
 
         /// <summary>Get a dance gif</summary>
-        public Task<NekoChxnResponse> Dance() => Fetch("danc/img");
+        public Task<NekoChxnResponse> Dance() => Fetch("dance/img");
 
         /// <summary>Get a hug gif</summary>
         public Task<NekoChxnResponse> Hug() => Fetch("hug/img");
